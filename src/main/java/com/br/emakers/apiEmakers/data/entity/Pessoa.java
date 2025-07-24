@@ -1,12 +1,16 @@
 package com.br.emakers.apiEmakers.data.entity;
 
+import com.br.emakers.apiEmakers.data.dto.request.PessoaRequestDTO;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table (name = "pessoas")
 
 public class Pessoa {
@@ -28,4 +32,13 @@ public class Pessoa {
 
     @Column(name = "senha", nullable = false,  length = 100)
     private String senha;
+
+    @Builder
+    public Pessoa(PessoaRequestDTO pessoaRequestDTO) {
+        this.nome = pessoaRequestDTO.nome();
+        this.cpf = pessoaRequestDTO.cpf();
+        this.cep = pessoaRequestDTO.cep();
+        this.email = pessoaRequestDTO.email();
+        this.senha = pessoaRequestDTO.senha();
+    }
 }
