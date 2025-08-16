@@ -33,6 +33,12 @@ public class Pessoa {
     @Column(name = "senha", nullable = false,  length = 100)
     private String senha;
 
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String localidade;
+    private String uf;
+
     @Builder
     public Pessoa(PessoaRequestDTO pessoaRequestDTO) {
         this.nome = pessoaRequestDTO.nome();
@@ -40,5 +46,13 @@ public class Pessoa {
         this.cep = pessoaRequestDTO.cep();
         this.email = pessoaRequestDTO.email();
         this.senha = pessoaRequestDTO.senha();
+    }
+
+    public void preencherEnderecoViaCep(String logradouro, String complemento, String bairro, String localidade, String uf) {
+        this.logradouro = logradouro;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.localidade = localidade;
+        this.uf = uf;
     }
 }

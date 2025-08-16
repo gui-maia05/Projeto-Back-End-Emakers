@@ -13,8 +13,18 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GeneralExceptionHandler{
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    private ResponseEntity<RestErrorMessage> entityNotFound(EntityNotFoundException ex) {
+    @ExceptionHandler(LivroNotFoundException.class)
+    private ResponseEntity<RestErrorMessage> entityNotFound(LivroNotFoundException ex) {
+        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return ResponseEntity.status(errorMessage.status()).body(errorMessage);
+    }
+    @ExceptionHandler(PessoaNotFoundException.class)
+    private ResponseEntity<RestErrorMessage> entityNotFound(PessoaNotFoundException ex) {
+        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return ResponseEntity.status(errorMessage.status()).body(errorMessage);
+    }
+    @ExceptionHandler(EmprestimoNotFoundException.class)
+    private ResponseEntity<RestErrorMessage> entityNotFound(EmprestimoNotFoundException ex) {
         RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
         return ResponseEntity.status(errorMessage.status()).body(errorMessage);
     }

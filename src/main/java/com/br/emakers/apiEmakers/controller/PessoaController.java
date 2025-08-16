@@ -3,6 +3,7 @@ package com.br.emakers.apiEmakers.controller;
 import com.br.emakers.apiEmakers.data.dto.request.PessoaRequestDTO;
 import com.br.emakers.apiEmakers.data.dto.response.PessoaResponseDTO;
 import com.br.emakers.apiEmakers.service.PessoaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
+
     @GetMapping (value = "/all")
     public ResponseEntity<List<PessoaResponseDTO>> getAllPessoas(){
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.getAllPessoas());
@@ -28,12 +30,12 @@ public class PessoaController {
     }
 
     @PostMapping (value = "/create")
-    public ResponseEntity<PessoaResponseDTO>  createPessoa(@RequestBody PessoaRequestDTO pessoaRequestDTO){
+    public ResponseEntity<PessoaResponseDTO>  createPessoa(@RequestBody @Valid PessoaRequestDTO pessoaRequestDTO){
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.createPessoa(pessoaRequestDTO));
     }
 
     @PutMapping (value = "/update/{idPessoa}")
-    public ResponseEntity<PessoaResponseDTO> updatePessoa(@PathVariable Long idPessoa, @RequestBody PessoaRequestDTO pessoaRequestDTO){
+    public ResponseEntity<PessoaResponseDTO> updatePessoa(@PathVariable Long idPessoa, @RequestBody @Valid PessoaRequestDTO pessoaRequestDTO){
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.updatePessoa(idPessoa, pessoaRequestDTO));
     }
 

@@ -10,11 +10,11 @@ public record PessoaRequestDTO(
         String nome,
 
         @NotBlank(message = "O CPF é obrigatório.")
-        @Pattern(regexp = "//d{11}", message = "O CPF deve conter exatamente 11 números.")
+        @Pattern(regexp = "\\d{11}", message = "O CPF deve conter exatamente 11 números.")
         String cpf,
 
         @NotBlank(message = "O CEP é obrigatório.")
-        @Pattern(regexp = "//d{9}", message = "O CEP deve conter exatamente 9 números.")
+        @Pattern(regexp = "\\d{8}", message = "O CEP deve conter exatamente 9 números.")
         String cep,
 
         @Email(message = "E-mail inválido.")
